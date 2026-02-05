@@ -272,20 +272,25 @@ def gerar_previsao_proximo_sorteio(
         print(f"   • Último sorteio: {ultimo_sorteio}")
         print(f"   • Próximo sorteio: {proximo_sorteio}")
     
-    # Selecionar TOP 30
-    numeros_30, scores_30 = selecionar_top_30_numeros(
+    # Selecionar TOP 30 (retorna 4 valores)
+    numeros_30, scores_30, _, _ = selecionar_top_30_numeros(
         df_historico,
         ranking_indicadores,
         verbose=verbose
     )
     
     # Refinar para TOP 10
-    numeros_10, scores_10 = refinar_para_top_10(
+    # Refinar para TOP 10 usando a funcao refinar_selecao disponível
+    # Nota: refinar_selecao retorna a lista toda, pegaremos os top 10 depois
+    lista_refinada, scores_refinados = refinar_selecao(
         numeros_30,
         scores_30,
         df_historico,
         verbose=verbose
     )
+    
+    numeros_10 = lista_refinada[:10]
+    scores_10 = {n: scores_refinados[n] for n in numeros_10}
     
     # Calcular métricas
     score_medio = np.mean(list(scores_10.values()))
@@ -474,7 +479,7 @@ def gerar_previsao_proximo_sorteio(
 __all__ = [
     'analisar_ultimos_500_jogos',
     'selecionar_top_30_numeros',
-    'refinar_para_top_10',
+    'refinar_selecao',
     'gerar_previsao_proximo_sorteio'
 ]
 

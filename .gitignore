@@ -32,6 +32,8 @@ Resultado/*.json
 Resultado/*.txt
 Resultado/*.xlsx
 Resultado/*.png
+Resultado/graficos/
+Resultado/validacao_retroativa/
 !Resultado/exemplos/
 *.log
 logs/
