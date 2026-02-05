@@ -34,6 +34,7 @@ import src.core.filtros_avancados as FiltrosAvancados
 import src.core.seletor_universo_inteligente as SeletorUniversoInteligente
 import src.core.sistema_refinamento as SistemaRefinamento
 import src.core.sistema_voto as SistemaVoto
+import src.core.sistema_voto as SistemaVoto
 
 # ==============================================================================
 # IMPORTS - VALIDAÇÃO
@@ -75,8 +76,7 @@ except ImportError:
 # ==============================================================================
 # IMPORTS - INTERFACE
 # ==============================================================================
-# Importado por último para evitar ciclos se ele depender dos anteriores
-import src.menu_interativo as MenuInterativo
+
 
 
 # ==============================================================================
@@ -101,6 +101,7 @@ SELETOR_UNIVERSO = SeletorUniversoInteligente
 SISTEMA_REFINAMENTO = SistemaRefinamento
 SISTEMA_VOTO = SistemaVoto
 
+
 # Validação
 RANKING = RankingIndicadores
 ANALISADOR_HISTORICO = AnalisadorHistorico
@@ -123,6 +124,13 @@ LIMPAR_DOCS = LimparDocumentos
 EXPORTADOR_EXCEL = ExportadorExcel
 
 # Interface
+
+
+import src.gerar_analise_v6 as AnaliseV6
+ANALISE_V6 = AnaliseV6
+
+# Interface (Movido para o final para evitar ciclo com CONFIG)
+import src.menu_interativo as MenuInterativo
 MENU_INTERATIVO = MenuInterativo
 
 

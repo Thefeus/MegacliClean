@@ -353,7 +353,7 @@ Função principal de execução e integração
 # (Continação do validador_retroativo_v2.py)
 
 # Adicionar imports para a segunda parte
-from src.validacao.valid ador_retroativo import (
+from src.validacao.validador_retroativo import (
     ler_ultimo_sorteio,
     extrair_previsoes_excel,
     extrair_ranking_indicadores

@@ -36,7 +36,8 @@ from config.fontes import (
     ANALISADOR_9_NUMEROS,
     INDICADOR_OTIMIZADO_10N,
     ANALISADOR_UNIVERSO_REDUZIDO,
-    SISTEMA_EXPORTACAO
+    SISTEMA_EXPORTACAO,
+    ANALISE_V6
 )
 
 # Aliases para manter compatibilidade com código existente e evitar refatoração massiva
@@ -785,27 +786,12 @@ def opcao_8_analise_v6(df_historico: pd.DataFrame):
     print(f"EXECUTANDO ANÁLISE V6 COMPLETA")
     print(f"{'='*70}{Style.RESET_ALL}\n")
     
-    import subprocess
-    import sys
-    
     try:
-        # Executar script v6
-        resultado = subprocess.run(
-            [sys.executable, "src/gerar_analise_v6.py"],
-            cwd=str(PROJECT_ROOT),
-            capture_output=False,
-            text=True
-        )
-        
-        if resultado.returncode == 0:
-            print(f"\n{Fore.GREEN}✅ ANÁLISE V6 CONCLUÍDA COM SUCESSO!{Style.RESET_ALL}")
-        else:
-            print(f"\n{Fore.RED}❌ Erro na execução da análise v6{Style.RESET_ALL}")
+        # Executar script v6 via Fonte
+        ANALISE_V6.main()
     
     except Exception as e:
         print(f"\n{Fore.RED}❌ Erro ao executar análise v6: {e}{Style.RESET_ALL}")
-        print(f"\n{Fore.CYAN}💡 Você pode executar manualmente:{Style.RESET_ALL}")
-        print(f"   python src/gerar_analise_v6.py")
     
     input(f"\n{Fore.CYAN}Pressione ENTER para continuar...{Style.RESET_ALL}")
 
