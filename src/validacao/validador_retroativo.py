@@ -28,29 +28,38 @@ def ler_ultimo_sorteio(pasta_dados: Path = None) -> Tuple[pd.DataFrame, str]:
     Lê o arquivo mais recente de sorteios da Mega-Sena.
     
     Args:
-        pasta_dados: Path para pasta Dados/ (opcional)
+        pasta_dados: Path para pasta Dados/ (opcional - mantido para compatibilidade, mas ignorado se não for usado para override específico)
         
     Returns:
         Tupla (DataFrame com sorteios, nome do arquivo)
     """
-    if pasta_dados is None:
-        pasta_dados = DADOS_DIR
+    # Em vez de procurar na pasta Dados, vamos usar o ARQUIVO_HISTORICO definido na config
+    # que é a fonte da verdade para o sistema atualmente
+    arquivo_historico = ARQUIVO_HISTORICO
     
-    # Listar todos os arquivos Excel
-    arquivos = list(pasta_dados.glob("*.xlsx"))
-    
-    if not arquivos:
-        raise FileNotFoundError(f"Nenhum arquivo Excel encontrado em {pasta_dados}")
-    
-    # Pegar o mais recente (por data de modificação)
-    arquivo_mais_recente = max(arquivos, key=lambda p: p.stat().st_mtime)
-    
-    print(f"📂 Lendo: {arquivo_mais_recente.name}")
+    if not arquivo_historico.exists():
+        # Fallback para procurar em Dados se o histórico consolidado não existir
+        if pasta_dados is None:
+            pasta_dados = DADOS_DIR
+            
+        print(f"⚠️ {arquivo_historico.name} não encontrado. Procurando em {pasta_dados.name}...")
+        
+        arquivos = list(pasta_dados.glob("*.xlsx"))
+        if not arquivos:
+             raise FileNotFoundError(f"Nenhum arquivo Excel encontrado em {pasta_dados} ou em {arquivo_historico}")
+        
+        arquivo_historico = max(arquivos, key=lambda p: p.stat().st_mtime)
+
+    print(f"📂 Lendo: {arquivo_historico.name}")
     
     # Ler Excel
-    df = pd.read_excel(arquivo_mais_recente, sheet_name='MEGA SENA')
+    try:
+        df = pd.read_excel(arquivo_historico, sheet_name='MEGA SENA')
+    except ValueError:
+        # Tentar sem nome da aba caso seja arquivo bruto diferente
+        df = pd.read_excel(arquivo_historico)
     
-    return df, arquivo_mais_recente.name
+    return df, arquivo_historico.name
 
 
 def extrair_previsoes_excel(arquivo_resultado: Path = None) -> pd.DataFrame:
