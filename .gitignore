@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+Resultado/*.json
+Resultado/*.txt
+Resultado/*.xlsx
+Resultado/*.png
+!Resultado/exemplos/
+*.log
+logs/
+.env
+
+# Cache
+cache/
+*.cache
+
+# Data
+Dados/

@@ -1,0 +1,42 @@
+
+# Configuração Centralizada - MegaCLI
+# Versão: 1.0.0
+# Data: 01/02/2026
+
+analise:
+  # ETAPA 0: Avaliação de Eficácias Individuais
+  eficacia_n_sorteios: 200
+  
+  # ETAPA 1: Batimento Histórico
+  batimento:
+    max_jogos: 200
+    janela_offset: 250
+    passo: 1
+    
+  # FASE 4: Geração de Jogos
+  geracao:
+    n_jogos: 210
+    top_indicadores: 10
+    
+  # Validação Histórica Estendida
+  validacao:
+    n_sorteios: 1000
+    split_series: [500, 500]
+    offset_inicial: 15 # Margem de segurança para cálculo de indicadores
+    
+  # FASE 5: Análise Ganhadores
+  fase5:
+    n_jogos_analise: 50
+    multiplicador_candidatos: 20
+
+# Configurações de IA Generativa
+ia:
+  modelo: "gemini-2.5-pro"
+  temperatura: 0.3
+  max_tentativas: 3
+  timeout: 60
+
+# Metadados do Sistema
+sistema:
+  versao_config: "1.0.1"
+  descricao: "Configuração dinâmica via YAML + IA"

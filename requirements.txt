@@ -1,0 +1,66 @@
+
+# Core dependencies
+python-dotenv==1.0.0
+python-docx==1.2.0
+
+# Data processing
+pandas==2.3.3
+numpy==2.3.4
+openpyxl==3.1.5
+xlrd==2.0.2
+
+# Machine Learning
+scikit-learn==1.7.2
+scipy==1.16.3
+xgboost
+
+# Visualization
+matplotlib==3.10.0
+seaborn==0.13.2
+
+# LangChain (versões compatíveis - 03/02/2026)
+langchain==0.3.13
+langchain-core==0.3.28
+langchain-google-genai==2.0.8
+langchain-community==0.3.13
+langchain-ollama==0.2.2
+
+# Utilities
+requests==2.32.5
+tqdm==4.67.1
+colorama==0.4.6
+PyYAML==6.0.1
+
+# Fine-tuning
+torch
+transformers==4.57.3
+datasets==2.19.2
+trl==0.9.4
+peft==0.11.1
+bitsandbytes==0.43.1
+
+# Dependências para Testes
+# =======================
+
+# Framework de testes
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.1
+
+# Utilitários de teste
+pytest-xdist>=3.3.1        # Execução paralela de testes
+pytest-timeout>=2.1.0      # Timeout para testes
+pytest-asyncio>=0.21.0     # Suporte para testes assíncronos
+
+# Análise de código
+pytest-flake8>=1.1.1       # Linting durante testes
+pytest-mypy>=0.10.3        # Type checking
+
+# Relatórios
+pytest-html>=3.2.0         # Relatórios HTML
+coverage>=7.2.0            # Análise de cobertura
+
+# Mocking e fixtures
+faker>=19.2.0              # Geração de dados fake
+freezegun>=1.2.2           # Mock de datas/tempo
+responses>=0.23.0          # Mock de requests HTTP
