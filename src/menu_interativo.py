@@ -116,6 +116,7 @@ def exibir_menu_principal():
 {Fore.YELLOW}10.{Style.RESET_ALL} 🤖 Ciclo de Refinamento IA (Novo)
 {Fore.YELLOW}11.{Style.RESET_ALL} 🔄 Validação Retroativa e Auto-Aprendizado ⭐
 {Fore.YELLOW}12.{Style.RESET_ALL} 🔒 Análise Conservadora (Anti-Overfitting) 🆕 v6.2
+{Fore.YELLOW}13.{Style.RESET_ALL} 🔙 Análise Reversa de Diferenças (Investigativa) 🆕
 {Fore.RED}0.{Style.RESET_ALL} ❌ Sair
 
 {Fore.CYAN}══════════════════════════════════════════════════════════════{Style.RESET_ALL}
@@ -1122,6 +1123,29 @@ def opcao_12_analise_conservadora(df_historico: pd.DataFrame):
     input(f"\n{Fore.CYAN}Pressione ENTER para continuar...{Style.RESET_ALL}")
 
 
+def opcao_13_analise_reversa():
+    """Opção 13: Análise Reversa de Diferenças."""
+    limpar_tela()
+    exibir_banner()
+    
+    print(f"\n{Fore.CYAN}{'='*70}")
+    print(f"OPÇÃO 13: ANÁLISE REVERSA DE DIFERENÇAS (INVESTIGATIVA)")
+    print(f"{'='*70}{Style.RESET_ALL}\n")
+    
+    print(f"{Fore.GREEN}🔍 Objetivo:{Style.RESET_ALL}")
+    print(f"   Identificar padrões na DIFERENÇA entre os números de sorteios consecutivos.")
+    print(f"   A análise é feita do jogo mais recente para trás (ordem reversa).\n")
+    
+    try:
+        from src.ferramentas.analise_reversa import loop_interativo
+        loop_interativo()
+    except Exception as e:
+        print(f"\n{Fore.RED}❌ Erro ao iniciar ferramenta: {e}{Style.RESET_ALL}")
+        import traceback
+        traceback.print_exc()
+        input("\nPressione ENTER para continuar...")
+
+
 def executar_menu():
     """Loop principal do menu."""
     # Variáveis globais para armazenar dados
@@ -1141,7 +1165,7 @@ def executar_menu():
         exibir_banner()
         exibir_menu_principal()
         
-        opcao = validar_entrada("Escolha uma opção: ", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+        opcao = validar_entrada("Escolha uma opção: ", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
         
         if opcao == 0:
             print(f"\n{Fore.YELLOW}👋 Encerrando MegaCLI... Até logo!{Style.RESET_ALL}\n")
@@ -1187,6 +1211,9 @@ def executar_menu():
         
         elif opcao == 12:
             opcao_12_analise_conservadora(df_historico)
+
+        elif opcao == 13:
+            opcao_13_analise_reversa()
 # Variáveis globais
 JOGOS_GERADOS = None
 VALIDACAO_ATUAL = None

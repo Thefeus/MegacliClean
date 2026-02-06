@@ -468,6 +468,10 @@ def gerar_previsao_proximo_sorteio(
             print(f"✅ Previsão salva em: {excel_path}")
             print(f"   Aba: PREVISÕES")
         
+    except PermissionError:
+        if verbose:
+            print(f"\n❌ ERRO DE PERMISSÃO: Não foi possível salvar o arquivo.")
+            print(f"   Por favor, FECHE o arquivo Excel '{excel_path.name}' e tente novamente.")
     except Exception as e:
         if verbose:
             print(f"⚠️  Erro ao exportar para Excel: {e}")
